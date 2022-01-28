@@ -4,6 +4,7 @@ public class Licencia {
 
 	// ATRIBUTOS
 	private String id = "";
+	private String tipo = "";
 	private String nombreCompleto = "";
 	private String fechaCaducidad = "";
 	
@@ -12,8 +13,9 @@ public class Licencia {
 	}
 
 	// CONSTRUCTOR
-	public Licencia(String id, String nombreCompleto, String fechaCaducidad) {
+	public Licencia(String id,String tipo, String nombreCompleto, String fechaCaducidad) {
 		this.id = id;
+		this.tipo = tipo;
 		this.nombreCompleto = nombreCompleto;
 		this.fechaCaducidad = fechaCaducidad;
 	}
@@ -25,6 +27,14 @@ public class Licencia {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getNombreCompleto() {
@@ -42,13 +52,13 @@ public class Licencia {
 	public void setFechaCaducidad(String fechaCaducidad) {
 		this.fechaCaducidad = fechaCaducidad;
 	}
-
+	
 	// TO STRING
 	@Override
 	public String toString() {
-		return "Licencia [id=" + id + ", nombreCompleto=" + nombreCompleto + ", fechaCaducidad=" + fechaCaducidad + "]";
+		return "Licencia [id=" + id + ", tipo=" + tipo + ", nombreCompleto=" + nombreCompleto + ", fechaCaducidad="
+				+ fechaCaducidad + "]";
 	}
-	
 	
 	
 }

@@ -19,7 +19,21 @@ public class Titular extends Persona{
 		this.aseguranza = aseguranza;
 		this.garaje = garaje;
 	}
-
+	
+	public boolean comprobarLicencia(String vehiculo, String tipoLicencia) {
+		
+		if (tipoLicencia.equalsIgnoreCase("C")) {
+			return true;
+		} else if (tipoLicencia.equalsIgnoreCase("B") && !vehiculo.equalsIgnoreCase("camion")) {
+			return true;
+		} else if (tipoLicencia.equalsIgnoreCase("A") && vehiculo.equalsIgnoreCase("moto")) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
 	// GETTERS Y SETTERS
 	public Licencia getLicencia() {
 		return licencia;

@@ -1,10 +1,10 @@
 package Clases.Personas;
 
-public class Persona {
+public abstract class Persona {
 
 	// ATRIBUTOS
-	private String nom = "";
-	private String cognoms = "";
+	private String nombre = "";
+	private String apellidos = "";
 	private String fechaNacimiento = "";
 
 	// CONSTRUCTOR VACIO
@@ -13,27 +13,29 @@ public class Persona {
 	}
 
 	// CONSTRUCTOR
-	public Persona(String nom, String cognoms, String fechaNacimiento) {
-		this.nom = nom;
-		this.cognoms = cognoms;
+	public Persona(String nombre, String apellidos, String fechaNacimiento) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public abstract boolean comprobarLicencia(String tipoLicencia, String vehiculo);
+	
 	// GETTERS Y SETTERS
-	public String getNom() {
-		return nom;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getCognoms() {
-		return cognoms;
+	public String getApellidos() {
+		return apellidos;
 	}
 
-	public void setCognoms(String cognoms) {
-		this.cognoms = cognoms;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 
 	public String getFechaNacimiento() {
@@ -47,7 +49,7 @@ public class Persona {
 	// TO STRING
 	@Override
 	public String toString() {
-		return "Persona [nom=" + nom + ", cognoms=" + cognoms + ", fechaNacimiento=" + fechaNacimiento + "]";
+		return "Persona [nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
 }

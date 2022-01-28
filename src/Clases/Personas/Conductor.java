@@ -7,13 +7,27 @@ public class Conductor extends Persona {
 
 	// CONSTRUCTOR VACIO
 	public Conductor() {
-		
+
 	}
-	
+
 	// CONSTRUCTOR
 	public Conductor(Licencia licencia) {
 		super();
 		this.licencia = licencia;
+	}
+
+	public boolean comprobarLicencia(String vehiculo, String tipoLicencia) {
+
+		if (tipoLicencia.equalsIgnoreCase("C")) {
+			return true;
+		} else if (tipoLicencia.equalsIgnoreCase("B") && !vehiculo.equalsIgnoreCase("camion")) {
+			return true;
+		} else if (tipoLicencia.equalsIgnoreCase("A") && vehiculo.equalsIgnoreCase("moto")) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	// GETTERS Y SETTERS
@@ -30,6 +44,5 @@ public class Conductor extends Persona {
 	public String toString() {
 		return "Conductor [licencia=" + licencia + "]";
 	}
-	
-	
+
 }
