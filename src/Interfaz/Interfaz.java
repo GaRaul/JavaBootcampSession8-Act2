@@ -8,7 +8,7 @@ public class Interfaz {
 	static Scanner teclado = new Scanner(System.in);
 
 	public static String pedirTipo() {
-		System.out.println("¿Que quieres crear?\nCoche\nMoto");
+		System.out.println("¿Que quieres crear?\n · Coche\n · Moto\n · Camion");
 		String opcion = teclado.next();
 
 		return opcion;
@@ -70,6 +70,8 @@ public class Interfaz {
 		ruedasTraseras.setMarca(marcaTraseras);
 		ruedasTraseras.setDiametro(diametroTraseras);
 
+		// Paso la opcion a minusculas para que entre en un case
+		opcion = opcion.toLowerCase();
 		switch (opcion) {
 		case "coche":
 			// Instancio el coche
@@ -86,28 +88,45 @@ public class Interfaz {
 
 			// Devuelvo el vehiculo (coche)
 			return coche;
-			
+
 		case "moto":
-			// Instancio el coche
+			// Instancio la moto
 			Moto moto = new Moto();
 
-			// Añado los atributos al coche
+			// Añado los atributos a la moto
 			moto.setMatricula(matricula);
 			moto.setMarca(marca);
 			moto.setColor(color);
 
-			// Le añado las ruedas al coche
+			// Le añado las ruedas a la moto
 			moto.setRuedaDelantera(ruedasDelanteras);
 			moto.setRuedaTrasera(ruedasTraseras);
-			
+
 			// Devuelvo el vehiculo (moto)
 			return moto;
+
+		case "camion":
+			// Instancio el camion
+			Camion camion = new Camion();
+
+			// Añado los atributos al camion
+			camion.setMatricula(matricula);
+			camion.setMarca(marca);
+			camion.setColor(color);
+
+			// Le añado las ruedas al camion
+			camion.setRuedasDelanteras(ruedasDelanteras);
+			camion.setRuedasTraseras(ruedasTraseras);
+
+			// Devuelvo el vehiculo (camion)
+			return camion;
 
 		default:
 			break;
 		}
 
-		// El metodo nunca llega hasta aqui, siempre devuelve el vehiculo dentro del switch
+		// El metodo nunca llega hasta aqui, siempre devuelve el vehiculo dentro del
+		// switch
 		return vehiculo;
 	}
 

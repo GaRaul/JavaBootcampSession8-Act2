@@ -1,19 +1,19 @@
 package Clases;
 
-public class Coche extends Vehiculo{
+public class Camion extends Vehiculo{
 
 	// ATRIBUTOS
 	private Rueda ruedasDelanteras;
 	private Rueda ruedasTraseras;
-	private int ruedas = 4;
+	private int ruedas = 8;
 	
 	// CONSTRUCTOR VACIO
-	public Coche() {
+	public Camion() {
 		
 	}
 	
 	// CONSTRUCTOR 
-	public Coche(Rueda ruedasDelanteras, Rueda ruedasTraseras) {
+	public Camion(Rueda ruedasDelanteras, Rueda ruedasTraseras) {
 		super();
 		this.ruedasDelanteras = ruedasDelanteras;
 		this.ruedasTraseras = ruedasTraseras;
