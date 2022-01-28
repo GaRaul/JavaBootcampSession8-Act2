@@ -16,6 +16,16 @@ public class Rueda {
 		this.marca = marca;
 		this.diametro = diametro;
 	}
+	
+	public boolean comprobarDiametro(double diametro) {
+		
+		if (diametro >= 0.4 && diametro <= 4) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 
 	// GETTERS Y SETTERS
 	public String getMarca() {

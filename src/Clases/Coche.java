@@ -1,5 +1,8 @@
 package Clases;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Coche {
 
 	// ATRIBUTOS
@@ -9,12 +12,26 @@ public class Coche {
 	private Rueda ruedasDelanteras;
 	private Rueda ruedasTraseras;
 	
+	public Coche() {
+		
+	}
+	
 	// CONSTRUCTOR CON ATRIBUTOS
 	public Coche(String matricula, String marca, String color) {
 		this.matricula = matricula;
 		this.marca = marca;
 		this.color = color;
 
+	}
+	
+	public boolean comprobarMatricula(String matricula){
+		Pattern pat = Pattern.compile("^[0-9]{4}[A-Z]{2,3}$");
+		Matcher mat = pat.matcher(matricula);
+		if (mat.find()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// GETTERS Y SETTERS
