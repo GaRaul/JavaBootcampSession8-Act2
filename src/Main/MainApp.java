@@ -1,3 +1,8 @@
+/*
+ * Autores: Abel, Fernando, Raul
+ * Ultima modificacion: 28/01/2022
+ *  */
+
 package Main;
 
 import Interfaz.*;
