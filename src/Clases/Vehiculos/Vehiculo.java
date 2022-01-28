@@ -1,7 +1,10 @@
 package Clases.Vehiculos;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import Clases.Personas.*;
 
 public class Vehiculo {
 
@@ -9,6 +12,8 @@ public class Vehiculo {
 	private String matricula = "";
 	private String marca = "";
 	private String color = "";
+	private Titular titular;
+	private ArrayList<Persona> conductores;
 
 	// CONSTRUCTOR VACIO
 	public Vehiculo() {
@@ -31,6 +36,10 @@ public class Vehiculo {
 		} else {
 			return false;
 		}
+	}
+	
+	public void introducirConductor(Conductor conductor) {
+		conductores.add(conductor);
 	}
 
 	// GETTERS Y SETTERS
@@ -58,6 +67,21 @@ public class Vehiculo {
 		this.color = color;
 	}
 
+	public Titular getTitular() {
+		return titular;
+	}
+
+	public void setTitular(Titular titular) {
+		this.titular = titular;
+	}
+
+	public ArrayList<Persona> getConductores() {
+		return conductores;
+	}
+
+	public void setConductores(ArrayList<Persona> conductores) {
+		this.conductores = conductores;
+	}
 
 	// TO STRING
 	@Override

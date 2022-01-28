@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Clases.Vehiculos.*;
@@ -8,6 +9,9 @@ import Clases.Personas.*;
 public class Interfaz {
 	static Scanner teclado = new Scanner(System.in);
 
+	public static ArrayList<Persona> arrayListPersonas = new ArrayList<Persona>();
+	public static  ArrayList<Vehiculo> arrayListVehiculos = new ArrayList<Vehiculo>();
+	
 	// METODO PARA PEDIR EL TIPO DE VEHICULO
 	public static String pedirTipoVehiculo() {
 		System.out.println("¿Que quieres crear?\n · Coche\n · Moto\n · Camion");
@@ -97,6 +101,27 @@ public class Interfaz {
 				coche.setRuedasDelanteras(ruedasDelanteras);
 				coche.setRuedasTraseras(ruedasTraseras);
 
+				// Le añado el titular al coche
+				coche.setTitular(titular);
+
+				// Le pregunto si el titular sera el conductor
+				if (!titularEsConductor()) {
+					Conductor conductor = crearConductor(); // Creo un conductor
+
+					// Compruebo si su licencia le permite conducir el tipo de vehiculo
+					if (conductor.comprobarLicencia(opcion, conductor.getLicencia().getTipo())) {
+						coche.introducirConductor(conductor); // Lo añado si se lo permite
+					} else {
+						System.out.println("La licencia del conductor no le permite conducir " + opcion + "."); // Muestro
+																												// un
+																												// mensaje
+																												// si no
+					}
+
+				}
+				
+				arrayListVehiculos.add(coche); // Añado el coche al ArrayList de vehiculos
+
 				// Devuelvo el vehiculo (coche)
 				return coche;
 
@@ -112,6 +137,27 @@ public class Interfaz {
 				// Le añado las ruedas a la moto
 				moto.setRuedaDelantera(ruedasDelanteras);
 				moto.setRuedaTrasera(ruedasTraseras);
+
+				// Le añado el titular a la moto
+				moto.setTitular(titular);
+
+				// Le pregunto si el titular sera el conductor
+				if (!titularEsConductor()) {
+					Conductor conductor = crearConductor(); // Creo un conductor
+
+					// Compruebo si su licencia le permite conducir el tipo de vehiculo
+					if (conductor.comprobarLicencia(opcion, conductor.getLicencia().getTipo())) {
+						moto.introducirConductor(conductor); // Lo añado si se lo permite
+					} else {
+						System.out.println("La licencia del conductor no le permite conducir " + opcion + "."); // Muestro
+																												// un
+																												// mensaje
+																												// si no
+					}
+
+				}
+				
+				arrayListVehiculos.add(moto); // Añado la moto al ArrayList de vehiculos
 
 				// Devuelvo el vehiculo (moto)
 				return moto;
@@ -129,23 +175,32 @@ public class Interfaz {
 				camion.setRuedasDelanteras(ruedasDelanteras);
 				camion.setRuedasTraseras(ruedasTraseras);
 
+				// Le añado el titular al camion
+				camion.setTitular(titular);
+
+				// Le pregunto si el titular sera el conductor
+				if (!titularEsConductor()) {
+					Conductor conductor = crearConductor(); // Creo un conductor
+
+					// Compruebo si su licencia le permite conducir el tipo de vehiculo
+					if (conductor.comprobarLicencia(opcion, conductor.getLicencia().getTipo())) {
+						camion.introducirConductor(conductor); // Lo añado si se lo permite
+					} else {
+						System.out.println("La licencia del conductor no le permite conducir " + opcion + "."); // Muestro
+																												// un
+																												// mensaje
+																												// si no
+					}
+
+				}
+				
+				arrayListVehiculos.add(camion); // Añado el camion al ArrayList de vehiculos
+
 				// Devuelvo el vehiculo (camion)
 				return camion;
 
 			default:
 				break;
-			}
-
-			// Le pregunto al usuario si el titular será el conductor del vehiculo, si no lo es creare un conductor
-			System.out.println("El titular sera tambien el conductor? [Si - No]");
-			String titularConductorOpcion = teclado.next();
-			if (!titularConductorOpcion.equalsIgnoreCase("si")) {
-				Conductor conductor = crearConductor(); // Creo el conductor
-				
-				// Compruebo si la licencia del conductor le permite conducir el vehiculo creado, en caso de no permitirlo muestro un mensaje
-				if (!conductor.comprobarLicencia(opcion, titular.getLicencia().getTipo())) {
-					System.out.println("La licencia del conductor no le permite conducir " + opcion + ".");
-				}
 			}
 
 		} else {
@@ -155,6 +210,17 @@ public class Interfaz {
 		// El metodo nunca llega hasta aqui, siempre devuelve el vehiculo dentro del
 		// switch
 		return vehiculo;
+	}
+
+	// METODO PARA COMPROBAR SI EL TITULAR ES CONDUCTOR
+	public static boolean titularEsConductor() {
+		System.out.println("El titular conducirá el vehiculo? [Si - No]");
+		String opcion = teclado.next();
+		if (opcion.equalsIgnoreCase("si")) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// METODO PARA CREAR UN TITULAR
@@ -191,6 +257,8 @@ public class Interfaz {
 		titular.setAseguranza(aseguranza);
 		titular.setGaraje(garaje);
 		titular.setLicencia(crearLicencia()); // Creo una licencia para guardarla en el atributo licencia del titular
+		
+		arrayListPersonas.add(titular); // Añado el titular al ArrayList de personas
 
 		return titular;
 	}
@@ -200,7 +268,7 @@ public class Interfaz {
 		Conductor conductor = new Conductor();
 
 		String nombre, apellidos, fechaNac;
-		
+
 		// Pido los datos
 		System.out.println("Introduce el nombre del conductor.");
 		nombre = teclado.next();
@@ -213,8 +281,11 @@ public class Interfaz {
 		conductor.setNombre(nombre);
 		conductor.setApellidos(apellidos);
 		conductor.setFechaNacimiento(fechaNac);
-		conductor.setLicencia(crearLicencia()); // Creo una licencia para guardarla en el atributo licencia del conductor
+		conductor.setLicencia(crearLicencia()); // Creo una licencia para guardarla en el atributo licencia del
+												// conductor
 
+		arrayListPersonas.add(conductor); // Añado el conductor al ArrayList de personas
+		
 		return conductor;
 	}
 
@@ -240,6 +311,83 @@ public class Interfaz {
 		licencia.setFechaCaducidad(fechaCad);
 
 		return licencia;
+	}
+
+	// METODO MENU
+	public static void menu() {
+
+		boolean salir = false;
+
+		do {
+			System.out.println( // Le pregunto que quiere hacer
+					"Que quieres hacer\n1 - Crear persona\n2 - Crear vehiculo\n3 - Listar personas\n4 - Listar vehiculos\n5 - Listar todo\n6 - Salir");
+			int opcion = teclado.nextInt();
+
+			switch (opcion) {
+			case 1:
+				System.out.println("1 - Crear titular\n2 - Crear conductor"); // Le pregunto que tipo de persona quiere crear
+				int opcion2 = teclado.nextInt();
+
+				switch (opcion2) {
+				
+				case 1:
+					crearTitular();
+					break;
+					
+				case 2:
+					crearConductor();
+					break;
+
+				default:
+					break;
+					
+				}
+				
+				break;
+
+			case 2:
+				crearVehiculo();
+				break;
+				
+			case 3:
+				
+				for (int i = 0; i < arrayListPersonas.size(); i++) {
+					System.out.println(arrayListPersonas.get(i));
+				}
+				
+				break;
+				
+			case 4:
+
+				for (int i = 0; i < arrayListVehiculos.size(); i++) {
+					System.out.println(arrayListVehiculos.get(i));
+				}
+				
+				break;
+				
+			case 5:
+				
+				for (int i = 0; i < arrayListPersonas.size(); i++) {
+					System.out.println(arrayListPersonas.get(i));
+				}
+				
+				for (int i = 0; i < arrayListVehiculos.size(); i++) {
+					System.out.println(arrayListVehiculos.get(i));
+				}
+				
+				break;
+				
+			case 6:
+				salir = true;
+				break;
+
+			default:
+				
+				break;
+				
+			}
+			
+		} while (!salir); // Hasta que no introduzca la opcion de salir, el programa se ejecuta en bucle
 	}
 
 }
