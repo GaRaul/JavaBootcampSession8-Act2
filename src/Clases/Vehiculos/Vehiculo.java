@@ -1,4 +1,4 @@
-package Clases;
+package Clases.Vehiculos;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

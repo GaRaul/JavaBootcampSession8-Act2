@@ -1,4 +1,4 @@
-package Clases;
+package Clases.Vehiculos;
 
 public class Moto extends Vehiculo{
 

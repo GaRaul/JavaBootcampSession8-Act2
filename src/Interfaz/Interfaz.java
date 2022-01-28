@@ -3,6 +3,11 @@ package Interfaz;
 import java.util.Scanner;
 
 import Clases.*;
+import Clases.Vehiculos.Camion;
+import Clases.Vehiculos.Coche;
+import Clases.Vehiculos.Moto;
+import Clases.Vehiculos.Rueda;
+import Clases.Vehiculos.Vehiculo;
 
 public class Interfaz {
 	static Scanner teclado = new Scanner(System.in);
